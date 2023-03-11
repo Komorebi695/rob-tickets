@@ -17,7 +17,7 @@ var db *gorm.DB
 // InitMysql 初始化MySQL
 func InitMysql(initConfig *configs.AppConfig) (err error) {
 	// 获取配置信息
-	database := initConfig.DataBase
+	database := initConfig.MySQL
 
 	// 日志
 	newLogger := logger.New(
