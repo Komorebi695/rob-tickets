@@ -25,17 +25,21 @@ type myClaims struct {
 	jwt.RegisteredClaims        // 内嵌申明字段
 }
 
+const TotalRequest float32 = 190000
+
 func main() {
 	initClient()
 	failCount = 0
 	wg := &sync.WaitGroup{}
-	wg.Add(1)
+	wg.Add(4)
 	beginTime := time.Now()
-	go doBuy(0, 40000, wg)
-	//go doBuy(40001, 60000, wg)
+	go doBuy(0, 60000, wg)
+	go doBuy(60001, 120000, wg)
+	go doBuy(120001, 180000, wg)
+	go doBuy(180001, 190000, wg)
 	wg.Wait()
 	endTime := time.Now()
-	fmt.Printf("请求失败率：%f%%\n耗时: %v \n失败次数: %d", failCount*100/float32(40000), endTime.Sub(beginTime), int(failCount))
+	fmt.Printf("请求失败率：%f%%\n耗时: %v \n失败次数: %d", failCount*100/TotalRequest, endTime.Sub(beginTime), int(failCount))
 }
 
 func initClient() {
@@ -46,7 +50,7 @@ func initClient() {
 			Timeout:   10 * time.Second,
 			KeepAlive: 30 * time.Second,
 		}).DialContext,
-		MaxIdleConns:        10,                // 空闲(保持活跃)连接的最大数量
+		MaxIdleConns:        5000,              // 空闲(保持活跃)连接的最大数量
 		MaxConnsPerHost:     5000,              // 限制每台主机的连接总数
 		MaxIdleConnsPerHost: 5000,              // 保持的最大空闲连接数
 		IdleConnTimeout:     300 * time.Second, // 空闲连接(保持连接)在关闭自己之前保持空闲的最大时间
