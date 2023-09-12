@@ -3,7 +3,6 @@
 设计一个算法进行抢票的调度（注意ACID！），并且让每个人都能够在**可接受的时间内**获得自己抢票是否成功的结果。
 当然，注意每张票都是独一无二的，都有自己的编码，不能超售，也不能一票多售，更不能在有票的情况下就不售了！
 在算法演示时，需要自行设计模拟算法，模拟C/S模型，并且模拟一定人数在一分钟内陆续或同时**访问服务器**，完成抢票操作！
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/23153452/1662946431891-3d24f685-87d6-4d96-9111-21e65e9e38dd.png#averageHue=%23fcfefd&clientId=u16ceeeb5-698c-4&from=paste&height=142&id=ubbf99d42&originHeight=160&originWidth=969&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36996&status=done&style=none&taskId=u80709a84-f1fd-4006-9473-f8c095ccfea&title=&width=861.3333333333334)
 
 ## 数据库设计
 > users
